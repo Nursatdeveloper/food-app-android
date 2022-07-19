@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">application</string>
+    <string name="foods">Foods</string>
+    <string name="cart">Cart</string>
+    <string name="account">Account</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="delivery">Delivery</string>
+    <string name="burgers">Burgers</string>
+    <string name="chicken">Chicken</string>
+    <string name="pizza">Pizza</string>
+    <string name="coffee">Coffee</string>
+    <string name="snacks">Snacks</string>
+</resources>

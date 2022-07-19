@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="restaurant"
+            type="com.example.application.models.Restaurant" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/imageRestaurant"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_140sdp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/colorSemiDark"
+            app:layout_constraintBottom_toBottomOf="@+id/imageRestaurant"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{restaurant.restaurant}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imageRestaurant"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="@dimen/_22sdp"
+            android:letterSpacing="0.1" />
+
+
+        <LinearLayout
+            android:id="@+id/layoutFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:topRightRadius="@dimen/_10sdp"
+            android:topLeftRadius="@dimen/_10sdp"
+            android:background="@drawable/bottom_shadow_box"
+            app:layout_constraintTop_toBottomOf="@+id/imageRestaurant">
+
+            <ImageView
+                android:layout_width="@dimen/_23sdp"
+                android:layout_height="@dimen/_23sdp"
+                android:src="@drawable/ic_rating"
+                app:tint="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="91%"
+                android:textStyle="normal"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="@color/colorPrimaryDark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(500+)"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:src="@drawable/delivery"
+                android:layout_marginStart="@dimen/_35sdp"
+                android:layout_marginEnd="@dimen/_5sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="570,00 KZT | 15-20 min"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
