@@ -2,22 +2,12 @@ package com.example.application.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.application.R;
-import com.example.application.adapters.RestaurantAdapter;
 import com.example.application.databinding.ActivityMainBinding;
-import com.example.application.models.Restaurant;
-import com.example.application.viewmodels.GetRestaurantsViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

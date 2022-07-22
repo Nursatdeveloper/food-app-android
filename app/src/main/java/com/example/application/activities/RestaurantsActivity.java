@@ -5,24 +5,30 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.application.R;
 import com.example.application.adapters.RestaurantAdapter;
-import com.example.application.databinding.ActivityMainBinding;
 import com.example.application.databinding.ActivityRestaurantsBinding;
 import com.example.application.models.Restaurant;
-import com.example.application.viewmodels.GetRestaurantsViewModel;
+import com.example.application.models.RestaurantReview;
+import com.example.application.network.catalog_service_api.CatalogApiClient;
+import com.example.application.network.catalog_service_api.CatalogApiService;
+import com.example.application.network.review_service_api.ReviewApiClient;
+import com.example.application.network.review_service_api.ReviewApiService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
+
 public class RestaurantsActivity extends AppCompatActivity {
 
-    private GetRestaurantsViewModel viewModel;
     private List<Restaurant> restaurants = new ArrayList<>();
+    private List<RestaurantReview> restaurantReviews = new ArrayList<>();
+    private List<Integer> restaurantIds = new ArrayList<>();
     private RestaurantAdapter restaurantAdapter;
     private ActivityRestaurantsBinding activityRestaurantsBinding;
 
@@ -35,24 +41,37 @@ public class RestaurantsActivity extends AppCompatActivity {
 
     private void doInitialization() {
         activityRestaurantsBinding.restaurantsRecyclerView.setHasFixedSize(true);
-        viewModel = new ViewModelProvider(this).get(GetRestaurantsViewModel.class);
-        restaurantAdapter = new RestaurantAdapter(restaurants);
+        restaurantAdapter = new RestaurantAdapter(restaurants, restaurantReviews);
         activityRestaurantsBinding.restaurantsRecyclerView.setAdapter(restaurantAdapter);
-        getRestaurants();
+        callApis();
     }
 
-    private void getRestaurants() {
-        viewModel.getRestaurants().observe(this, response -> {
-            if(response != null) {
-                String t = String.valueOf(response.size());
-                Toast.makeText(getApplicationContext(), t, Toast.LENGTH_SHORT).show();
-                restaurants.addAll(response);
-                Log.i("INFO", String.valueOf(restaurants.size()));
-                Log.i("INFO", restaurants.get(1).getRestaurant());
-                restaurantAdapter.notifyDataSetChanged();
-            } else {
-                Toast.makeText(getApplicationContext(), "Response null", Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void callApis() {
+        CompositeDisposable compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(
+                CatalogApiClient.getRetrofit()
+                        .create(CatalogApiService.class)
+                        .getRestaurants().subscribeOn(Schedulers.io())
+                        .flatMap(restaurants1 -> {
+                            restaurants.addAll(restaurants1);
+                            for(Restaurant r : restaurants) {
+                                restaurantIds.add(Integer.parseInt(r.getId()));
+                            }
+                            Log.i("INFO", "restaurantIDs: " + String.valueOf(restaurantIds.size()));
+                            return ReviewApiClient.getRetrofit()
+                                    .create(ReviewApiService.class)
+                                    .getReviewStatistics("restaurant", restaurantIds);
+                        }).map(restaurantReviewsResponse -> {
+                            restaurantReviews.addAll(restaurantReviewsResponse);
+                            return restaurantReviews;
+                        }).observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(result -> {
+                            Log.i("Result", String.valueOf(restaurantReviews.size()) + " " +String.valueOf(restaurants.size()));
+                            restaurantAdapter.notifyDataSetChanged();
+                        }, error -> {
+                            Log.i("ERROR", error.getMessage());
+                        })
+        );
     }
+
 }

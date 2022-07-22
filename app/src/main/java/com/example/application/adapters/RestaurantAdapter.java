@@ -13,16 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.application.R;
 import com.example.application.databinding.ItemContainerRestaurantBinding;
 import com.example.application.models.Restaurant;
+import com.example.application.models.RestaurantReview;
+import com.example.application.responses.GetReviewStatisticsResponse;
 
 import java.util.List;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder> {
 
     private List<Restaurant> restaurants;
+    private List<RestaurantReview> restaurantReviews;
     private LayoutInflater layoutInflater;
 
-    public RestaurantAdapter(List<Restaurant> restaurants) {
+    public RestaurantAdapter(List<Restaurant> restaurants, List<RestaurantReview> restaurantReviews) {
         this.restaurants = restaurants;
+        this.restaurantReviews = restaurantReviews;
     }
 
     @NonNull
@@ -39,7 +43,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantViewHolder holder, int position) {
-        holder.bindRestaurant(restaurants.get(position));
+        holder.bindRestaurant(restaurants.get(position), restaurantReviews.get(position));
     }
 
     @Override
@@ -56,8 +60,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             this.itemContainerRestaurantBinding = itemContainerRestaurantBinding;
         }
 
-        public void bindRestaurant(Restaurant restaurant) {
+        public void bindRestaurant(Restaurant restaurant, RestaurantReview restaurantReview) {
             itemContainerRestaurantBinding.setRestaurant(restaurant);
+            itemContainerRestaurantBinding.setReview(restaurantReview);
             itemContainerRestaurantBinding.imageRestaurant.setImageBitmap(
                     getDecodedImage(restaurant.getImage())
             );
