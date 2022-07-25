@@ -17,6 +17,7 @@ import com.example.application.listeners.RestaurantsListener;
 import com.example.application.models.Restaurant;
 import com.example.application.models.RestaurantReview;
 import com.example.application.responses.GetReviewStatisticsResponse;
+import com.example.application.utilities.ImageHandler;
 
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             itemContainerRestaurantBinding.setRestaurant(restaurant);
             itemContainerRestaurantBinding.setReview(restaurantReview);
             itemContainerRestaurantBinding.imageRestaurant.setImageBitmap(
-                    getDecodedImage(restaurant.getImage())
+                    ImageHandler.getDecodedImage(restaurant.getImage())
             );
             itemContainerRestaurantBinding.getRoot().setOnClickListener(view -> {
                 restaurantsListener.onRestaurantClicked(restaurant, restaurantReview);
@@ -79,8 +80,4 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         }
     }
 
-    private static Bitmap getDecodedImage(String encodedImage) {
-        byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-    }
 }

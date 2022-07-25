@@ -4,16 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/drawable/bottom_shadow_box.xml" value="0.218" />
+        <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/drawable/food_category_background.xml" value="0.182" />
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/drawable/ic_back.xml" value="0.164" />
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/drawable/item_restaurant_background.xml" value="0.218" />
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/drawable/menu_background.xml" value="0.1" />
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/drawable/rounded_background.xml" value="0.164" />
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/drawable/search_background.xml" value="0.1" />
+        <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/drawable/transparent_background.xml" value="0.187" />
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/layout/activity_food_categories.xml" value="0.22573749465583584" />
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/layout/activity_main.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/layout/activity_restaurant_details.xml" value="0.22573749465583584" />
-        <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/layout/activity_restaurants.xml" value="0.22573749465583584" />
-        <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/layout/item_container_food_category.xml" value="0.22488242838820008" />
+        <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/layout/activity_restaurants.xml" value="0.264" />
+        <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/layout/item_container_food_category.xml" value="0.536" />
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/layout/item_container_restaurant.xml" value="0.264" />
         <entry key="..\:/Users/Nursat/Portfolio/Android/Practice/FoodApi_v1/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.20546875" />
       </map>

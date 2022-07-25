@@ -17,31 +17,49 @@
       android:layout_height="match_parent"
       tools:context=".activities.RestaurantsActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/scrollView">
 
-      <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/restaurants"
-        android:textSize="@dimen/_20ssp"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@color/colorBackground"
-        android:paddingTop="@dimen/_5sdp"
-        android:paddingBottom="@dimen/_5sdp"
-        android:textStyle="bold"
-        android:gravity="center"
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/colorBackground"
+          android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/restaurants"
+            android:textSize="@dimen/_20ssp"
+            android:textColor="@color/colorPrimaryText"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:textStyle="bold"
+            android:gravity="center"
+            />
+
+
+      </LinearLayout>
+
+      <ImageView
+          android:id="@+id/imageBack"
+          android:layout_width="@dimen/_25sdp"
+          android:layout_height="@dimen/_25sdp"
+          android:src="@drawable/ic_back"
+          app:tint="@color/colorPrimaryDark"
+          android:layout_marginTop="@dimen/_5sdp"
+          android:layout_marginStart="@dimen/_3sdp"
           />
 
+    </RelativeLayout>
 
-    </LinearLayout>
+
 
     <ScrollView
         android:id="@+id/scrollView"

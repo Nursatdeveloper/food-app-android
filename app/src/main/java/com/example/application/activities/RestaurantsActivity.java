@@ -44,6 +44,7 @@ public class RestaurantsActivity extends AppCompatActivity implements Restaurant
         activityRestaurantsBinding.restaurantsRecyclerView.setHasFixedSize(true);
         restaurantAdapter = new RestaurantAdapter(restaurants, restaurantReviews, this);
         activityRestaurantsBinding.restaurantsRecyclerView.setAdapter(restaurantAdapter);
+        activityRestaurantsBinding.imageBack.setOnClickListener(view -> onBackPressed());
         callApis();
     }
 
