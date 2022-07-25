@@ -2,7 +2,9 @@ package com.example.application.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RestaurantReview {
+import java.io.Serializable;
+
+public class RestaurantReview implements Serializable {
     @SerializedName("reviewItemId")
     private String id;
 

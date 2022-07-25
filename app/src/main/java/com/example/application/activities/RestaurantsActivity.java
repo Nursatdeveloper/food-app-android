@@ -1,17 +1,16 @@
 package com.example.application.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.application.R;
 import com.example.application.adapters.RestaurantAdapter;
 import com.example.application.databinding.ActivityRestaurantsBinding;
+import com.example.application.listeners.RestaurantsListener;
 import com.example.application.models.Restaurant;
 import com.example.application.models.RestaurantReview;
 import com.example.application.network.catalog_service_api.CatalogApiClient;
@@ -26,7 +25,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class RestaurantsActivity extends AppCompatActivity {
+public class RestaurantsActivity extends AppCompatActivity implements RestaurantsListener {
 
     private List<Restaurant> restaurants = new ArrayList<>();
     private List<RestaurantReview> restaurantReviews = new ArrayList<>();
@@ -43,7 +42,7 @@ public class RestaurantsActivity extends AppCompatActivity {
 
     private void doInitialization() {
         activityRestaurantsBinding.restaurantsRecyclerView.setHasFixedSize(true);
-        restaurantAdapter = new RestaurantAdapter(restaurants, restaurantReviews);
+        restaurantAdapter = new RestaurantAdapter(restaurants, restaurantReviews, this);
         activityRestaurantsBinding.restaurantsRecyclerView.setAdapter(restaurantAdapter);
         callApis();
     }
@@ -76,4 +75,11 @@ public class RestaurantsActivity extends AppCompatActivity {
         );
     }
 
+    @Override
+    public void onRestaurantClicked(Restaurant restaurant, RestaurantReview restaurantReview) {
+        Intent intent = new Intent(getApplicationContext(), RestaurantDetailsActivity.class);
+        intent.putExtra("restaurant", restaurant);
+        intent.putExtra("review", restaurantReview);
+        startActivity(intent);
+    }
 }

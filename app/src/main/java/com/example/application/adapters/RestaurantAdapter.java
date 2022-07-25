@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.application.R;
 import com.example.application.databinding.ItemContainerRestaurantBinding;
+import com.example.application.listeners.RestaurantsListener;
 import com.example.application.models.Restaurant;
 import com.example.application.models.RestaurantReview;
 import com.example.application.responses.GetReviewStatisticsResponse;
@@ -23,10 +25,14 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     private List<Restaurant> restaurants;
     private List<RestaurantReview> restaurantReviews;
     private LayoutInflater layoutInflater;
+    private RestaurantsListener restaurantsListener;
 
-    public RestaurantAdapter(List<Restaurant> restaurants, List<RestaurantReview> restaurantReviews) {
+    public RestaurantAdapter(List<Restaurant> restaurants,
+                             List<RestaurantReview> restaurantReviews,
+                             RestaurantsListener restaurantsListener) {
         this.restaurants = restaurants;
         this.restaurantReviews = restaurantReviews;
+        this.restaurantsListener = restaurantsListener;
     }
 
     @NonNull
@@ -51,7 +57,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         return restaurants.size();
     }
 
-    static class RestaurantViewHolder extends RecyclerView.ViewHolder {
+    class RestaurantViewHolder extends RecyclerView.ViewHolder {
 
         private ItemContainerRestaurantBinding itemContainerRestaurantBinding;
 
@@ -66,6 +72,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             itemContainerRestaurantBinding.imageRestaurant.setImageBitmap(
                     getDecodedImage(restaurant.getImage())
             );
+            itemContainerRestaurantBinding.getRoot().setOnClickListener(view -> {
+                restaurantsListener.onRestaurantClicked(restaurant, restaurantReview);
+            });
             itemContainerRestaurantBinding.executePendingBindings();
         }
     }
