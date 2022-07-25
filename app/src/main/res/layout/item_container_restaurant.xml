@@ -52,15 +52,17 @@
             android:id="@+id/layoutFooter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:orientation="horizontal"
             android:paddingTop="@dimen/_5sdp"
             android:paddingBottom="@dimen/_5sdp"
-            android:topRightRadius="@dimen/_10sdp"
-            android:topLeftRadius="@dimen/_10sdp"
             android:background="@drawable/bottom_shadow_box"
             app:layout_constraintTop_toBottomOf="@+id/imageRestaurant">
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:layout_width="@dimen/_23sdp"
                 android:layout_height="@dimen/_23sdp"
                 android:src="@drawable/ic_rating"
@@ -81,19 +83,28 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_gravity="center" />
 
-            <ImageView
-                android:layout_width="@dimen/_22sdp"
-                android:layout_height="@dimen/_22sdp"
-                android:src="@drawable/delivery"
-                android:layout_marginStart="@dimen/_45sdp"
-                android:layout_marginEnd="@dimen/_5sdp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="570,00 KZT | 15-20 min"
-                android:layout_gravity="center"
-                />
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_marginEnd="@dimen/_5sdp">
+
+                <ImageView
+                    android:contentDescription="@string/app_name"
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    android:src="@drawable/food_delivery"
+                    android:layout_marginEnd="@dimen/_5sdp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="570,00 KZT | 15-20 min"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -1,8 +1,10 @@
 package com.example.application.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +49,7 @@ public class RestaurantsActivity extends AppCompatActivity {
     }
 
     private void callApis() {
+        activityRestaurantsBinding.setIsLoading(true);
         CompositeDisposable compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
                 CatalogApiClient.getRetrofit()
@@ -57,7 +60,6 @@ public class RestaurantsActivity extends AppCompatActivity {
                             for(Restaurant r : restaurants) {
                                 restaurantIds.add(Integer.parseInt(r.getId()));
                             }
-                            Log.i("INFO", "restaurantIDs: " + String.valueOf(restaurantIds.size()));
                             return ReviewApiClient.getRetrofit()
                                     .create(ReviewApiService.class)
                                     .getReviewStatistics("restaurant", restaurantIds);
@@ -66,7 +68,7 @@ public class RestaurantsActivity extends AppCompatActivity {
                             return restaurantReviews;
                         }).observeOn(AndroidSchedulers.mainThread())
                         .subscribe(result -> {
-                            Log.i("Result", String.valueOf(restaurantReviews.size()) + " " +String.valueOf(restaurants.size()));
+                            activityRestaurantsBinding.setIsLoading(false);
                             restaurantAdapter.notifyDataSetChanged();
                         }, error -> {
                             Log.i("ERROR", error.getMessage());
