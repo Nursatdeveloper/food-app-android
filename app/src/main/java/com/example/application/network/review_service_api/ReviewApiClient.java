@@ -1,6 +1,5 @@
 package com.example.application.network.review_service_api;
 
-import android.util.Log;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

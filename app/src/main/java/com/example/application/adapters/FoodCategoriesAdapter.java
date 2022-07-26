@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.application.R;
 import com.example.application.databinding.ItemContainerFoodCategoryBinding;
+import com.example.application.listeners.FoodCategoriesListener;
 import com.example.application.models.FoodCategory;
 import com.example.application.utilities.ImageHandler;
 
@@ -19,9 +20,11 @@ public class FoodCategoriesAdapter extends RecyclerView.Adapter<FoodCategoriesAd
 
     private List<FoodCategory> foodCategories;
     private LayoutInflater layoutInflater;
+    private FoodCategoriesListener foodCategoriesListener;
 
-    public FoodCategoriesAdapter(List<FoodCategory> foodCategories) {
+    public FoodCategoriesAdapter(List<FoodCategory> foodCategories, FoodCategoriesListener foodCategoriesListener) {
         this.foodCategories = foodCategories;
+        this.foodCategoriesListener = foodCategoriesListener;
     }
 
     @NonNull
@@ -46,7 +49,7 @@ public class FoodCategoriesAdapter extends RecyclerView.Adapter<FoodCategoriesAd
         return foodCategories.size();
     }
 
-    static class FoodCategoriesViewHolder extends RecyclerView.ViewHolder {
+    class FoodCategoriesViewHolder extends RecyclerView.ViewHolder {
 
         private ItemContainerFoodCategoryBinding itemContainerFoodCategoryBinding;
 
@@ -57,10 +60,13 @@ public class FoodCategoriesAdapter extends RecyclerView.Adapter<FoodCategoriesAd
 
         public void bindFoodCategory(FoodCategory foodCategory) {
             itemContainerFoodCategoryBinding.setFoodCategory(foodCategory);
-            Log.i("INFO", foodCategory.getName());
+            Log.i("INFO", foodCategory.getId());
             itemContainerFoodCategoryBinding.imageFoodCategory.setImageBitmap(
                     ImageHandler.getDecodedImage(foodCategory.getImage())
             );
+            itemContainerFoodCategoryBinding.getRoot().setOnClickListener(view -> {
+                foodCategoriesListener.onFoodCategoryClicked(foodCategory);
+            });
             itemContainerFoodCategoryBinding.executePendingBindings();
         }
     }

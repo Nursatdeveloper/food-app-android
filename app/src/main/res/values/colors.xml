@@ -8,4 +8,5 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorSemiDark">#90000000</color>
     <color name="colorYellow">#ffcc00</color>
+    <color name="colorSuccess">#50C878</color>
 </resources>

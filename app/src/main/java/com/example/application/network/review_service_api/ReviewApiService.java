@@ -1,7 +1,6 @@
 package com.example.application.network.review_service_api;
 
 import com.example.application.models.RestaurantReview;
-import com.example.application.responses.GetReviewStatisticsResponse;
 
 import java.util.List;
 

@@ -1,10 +1,6 @@
 package com.example.application.adapters;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,7 +12,6 @@ import com.example.application.databinding.ItemContainerRestaurantBinding;
 import com.example.application.listeners.RestaurantsListener;
 import com.example.application.models.Restaurant;
 import com.example.application.models.RestaurantReview;
-import com.example.application.responses.GetReviewStatisticsResponse;
 import com.example.application.utilities.ImageHandler;
 
 import java.util.List;
